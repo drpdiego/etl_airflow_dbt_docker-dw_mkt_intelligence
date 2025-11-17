@@ -1,0 +1,48 @@
+sources:
+  - name: public
+    database: mkt_intelligence_dw
+    schema: public
+    tables:
+      - name: marcas
+        description: "Table containing brand information"
+      - name: embalagens
+        description: "Table containing packaging information"
+      - name: empresas
+        description: "Table containing company information"
+      - name: pontos_de_venda
+        description: "Table containing points of sale information"
+      - name: coletas_03_25
+        description: "Table containing collection data from March 2025"
+      - name: coletas_08_25
+        description: "Table containing collection data from August 2025"
+
+models:
+  - name: stg_marcas
+    description: "Staging table for brands"
+    columns:
+      - name: cod_marca
+        description: "Brand code"
+      - name: desc_marca
+        description: "Brand description"
+      - name: seg_preco
+        description: "Brand price segment"
+      - name: desc_fabricante
+        description: "Brand manufacturer description"
+  
+  - name: stg_empresas
+
+  - name: stg_embalagens
+    description: "Staging table for packaging"
+    columns:
+      - name: cod_embalagem
+        description: "Packaging code"
+      - name: desc_embalagem
+        description: "Packaging description"
+      - name: qtd_unidades
+        description: "Quantity of units in the packaging"
+      - name: qtd_litros
+        description: "Total amount of liters of the packaging (considering all units in the packaging)"
+
+  - name: stg_pontos_de_venda
+  - name: stg_coletas_ago_25
+  - name: stg_coletas_mar_25

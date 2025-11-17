@@ -1,0 +1,17 @@
+# local env files
+.env
+
+# python
+__pycache__/
+*.pyc
+*.pyd
+venv/
+
+# vscode
+.vscode/
+
+# dbt
+dbt/profiles.yml
+
+# airflow
+logs/
