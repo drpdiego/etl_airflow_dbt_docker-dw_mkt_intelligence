@@ -3,9 +3,9 @@ mkt_int_dbt:
   outputs:
     dev:
       type: postgres
-      host: ${POSTGRES_HOST}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
+      host: "{{ env_var('POSTGRES_HOST') }}"
+      user: "{{ env_var('POSTGRES_USER') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
       port: 5432
-      dbname: ${POSTGRES_DB}
+      dbname: "{{ env_var('POSTGRES_DB') }}"
       schema: public
