@@ -10,8 +10,5 @@ venv/
 # vscode
 .vscode/
 
-# dbt
-dbt/profiles.yml
-
 # airflow
 logs/
