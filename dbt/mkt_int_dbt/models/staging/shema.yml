@@ -1,6 +1,6 @@
 sources:
   - name: public
-    database: mkt_intelligence_dw
+    database: "{{ env_var('POSTGRES_DB') }}"
     schema: public
     tables:
       - name: marcas
