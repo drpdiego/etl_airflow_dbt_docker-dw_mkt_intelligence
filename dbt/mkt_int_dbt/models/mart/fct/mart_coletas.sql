@@ -8,7 +8,7 @@ select
     c.cod_embalagem,
     c.cod_marca,
     c.vol_cxs,
-    cast(((e.qtd_litros * c.vol_cxs) / 100) as numeric(12, 8)) as vol_hl,
+    cast(((e.vol_litros * c.vol_cxs) / 100) as numeric(12, 8)) as vol_hl,
     c.pv,
     c.pp,
     c.mes_coletas

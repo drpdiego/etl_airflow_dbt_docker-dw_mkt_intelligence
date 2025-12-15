@@ -27,6 +27,7 @@ cd SeuRepositorio
 
 Renomeie o arquivo ".env.exemplo" para ".env" e edite as variáveis de ambiente. O arquivo contém as seguintes variáveis (acrescente os valores às variáveis):
 
+##### --- Inicio do conteúdo arquivo ---
 POSTGRES_DB=<br>
 POSTGRES_PASSWORD=<br>
 POSTGRES_USER=<br>
@@ -44,6 +45,7 @@ AIRFLOW_PASSWORD=<br>
 AIRFLOW_FIRST_NAME=<br>
 AIRFLOW_LAST_NAME=<br>
 AIRFLOW_EMAIL=<br>
+##### --- Final do conteúdo arquivo ---
 
 Nessa última variável, indique o caminho onde as planilhas foram salvas localmente<br>
 SPREADSHEET_PATH=Where_is_your_spreadsheet_files<br>
