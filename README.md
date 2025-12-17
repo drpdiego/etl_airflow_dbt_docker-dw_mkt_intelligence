@@ -45,14 +45,17 @@ AIRFLOW_PASSWORD=<br>
 AIRFLOW_FIRST_NAME=<br>
 AIRFLOW_LAST_NAME=<br>
 AIRFLOW_EMAIL=<br>
-##### --- Final do conteúdo arquivo ---
 
 Nessa última variável, indique o caminho onde as planilhas foram salvas localmente<br>
 SPREADSHEET_PATH=Where_is_your_spreadsheet_files<br>
 
+##### --- Final do conteúdo arquivo ---
+
 ### 3. Subir o ambiente Docker
 
-O comando a seguir construirá as imagens do Docker e iniciará os serviços (PostgreSQL, Airflow).
+**Certifique-se de que o Docker Desktop esteja aberto**.
+
+Com o Docker Desktop aberto, o comando a seguir construirá as imagens do Docker e iniciará os serviços (PostgreSQL, Airflow).
 
 ```bash
 docker-compose up -d --build
@@ -75,8 +78,14 @@ Já dentro da pasta do projeto dbt, rode o dbt deps:
 dbt deps
 ```
 
+Em seguida, para sair do container, rode:
+
+```bash
+exit
+```
+
 ### 4. Acessar o Airflow UI
-Após alguns minutos (o Airflow leva um tempo para inicializar), você pode acessar a interface do Airflow em:
+Após alguns segundos/minutos (o Airflow leva um tempo para inicializar), você pode acessar a interface do Airflow em:
 http://localhost:8081
 Faça login com as credenciais definidas no seu .env (airflow/airflowpass).
 
@@ -96,6 +105,22 @@ O pipeline seguirá a seguinte ordem:
 **- dbt_run_intermediate:** Faz a união das tabelas de coletas.
 
 **- dbt_run_mart:** Finaliza a modelagem dos dados.
+
+### 5. Verificar os dados no Postgres
+
+1 - Abra o Postgres<br> 
+2 - Registre um servidor<br>
+3 - Na aba "connection" da janela de registro do servidor, preencha os campos abaixo:
+
+**Host name/address**: localhost
+
+**Port**: 5434 (essa é a porta definida no docker-compose para postgres no localhost)
+
+**Maintenance database**: valor da variável 'POSTGRES_DB' (no .env)
+
+**Username**: valor da variável 'POSTGRES_USER' (no .env)
+
+**Password**: valor da variável 'POSTGRES_PASSWORD' (no .env)
 
 ## 📂 Estrutura do Projeto
 
