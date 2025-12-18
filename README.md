@@ -122,13 +122,6 @@ O pipeline seguirá a seguinte ordem:
 
 **Password**: valor da variável 'POSTGRES_PASSWORD' (no .env)
 
-## 📂 Estrutura do Projeto
-
-...
-
-## 📄 Documentação do dbt
-
-...
 
 Feito por Diego / drpdiego
 

@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: stg_marcas
+    description: "Tabela de preparação para marcas"
+    columns:
+      - name: cod_marca
+        description: "Código da marca"
+      - name: desc_marca
+        description: "Descrição da marca"
+      - name: seg_preco
+        description: "Segmento de preço da marca"
+      - name: desc_fabricante
+        description: "Descrição do fabricante"
+
+  - name: stg_empresas
+    description: "Tabela de preparação para empresas"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa"
+      - name: desc_empresa
+        description: "Descrição da empresa"
+      - name: continente
+        description: "CContinente da empresa"
+
+  - name: stg_embalagens
+    description: "Tabela de preparação para embalagens"
+    columns:
+      - name: cod_embalagem
+        description: "Código da embalagem"
+      - name: desc_embalagem
+        description: "Descrição da embalagem"
+      - name: qtd_unidades
+        description: "Quantidade de unidades na embalagem"
+      - name: vol_litros
+        description: "Volume total em litros da embalagem (considerando todas as unidades na embalagem)"
+
+  - name: stg_pontos_de_venda
+    description: "Tabela de preparação para pontos de venda"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa à qual o cliente pertence"
+      - name: cod_cliente
+        description: "Código do cliente"
+      - name: canal
+        description: "Canal de venda do cliente"
+      - name: cidade
+        description: "Cidade onde o cliente está localizado"
+
+  - name: stg_coletas_set_25
+    description: "Tabela de preparação para coletas de setembro de 2025"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa à qual o cliente pertence"
+      - name: cod_cliente
+        description: "Código do cliente"
+      - name: cod_embalagem
+        description: "Código da embalagem do produto coletado"
+      - name: cod_marca
+        description: "Código da marca do produto coletado"
+      - name: vol_cxs
+        description: "Volume coletado em caixas"
+      - name: pv
+        description: "Preço de compra do produto pelo ponto de venda em pacote"
+      - name: pp
+        description: "Preço pago pelo cliente por unidade (não pacote) de um produto"
+      - name: mes_coletas
+        description: "Mês de coleta da pesquisa"
+
+  - name: stg_coletas_dez_25
+    description: "Tabela de preparação para coletas de dezembro de 2025"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa à qual o cliente pertence"
+      - name: cod_cliente
+        description: "Código do cliente"
+      - name: cod_embalagem
+        description: "Código da embalagem do produto coletado"
+      - name: cod_marca
+        description: "Código da marca do produto coletado"
+      - name: vol_cxs
+        description: "Volume coletado em caixas"
+      - name: pv
+        description: "Preço de compra do produto pelo ponto de venda em pacote"
+      - name: pp
+        description: "Preço pago pelo cliente por unidade (não pacote) de um produto"
+      - name: mes_coletas
+        description: "Mês de coleta da pesquisa"

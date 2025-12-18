@@ -12,4 +12,4 @@ select
     cast(preco_varejo as numeric(5, 2)) as pv,
     cast(preco_ponta as numeric(5, 2)) as pp,
     cast('2025-09-01' as date) as mes_coletas
-from {{ source('public', 'coletas_09_25') }}
+from {{ source('postgres_data_raw', 'coletas_09_25') }}

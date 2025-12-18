@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: postgres_data_raw
+    database: "{{ env_var('POSTGRES_DB') }}"
+    schema: public
+    tables:
+      - name: marcas
+        description: "Tabela contendo informações de marcas"
+      - name: embalagens
+        description: "Tabela contendo informações de embalagens"
+      - name: empresas
+        description: "Tabela contendo informações de empresas"
+      - name: pontos_de_venda
+        description: "Tabela contendo informações de pontos de venda (algumas informações apenas)"
+      - name: coletas_09_25
+        description: "Tabela contendo dados de coletas de pesquisa de setembro de 2025"
+      - name: coletas_12_25
+        description: "Tabela contendo dados de coletas de pesquisa de dezembro de 2025"
