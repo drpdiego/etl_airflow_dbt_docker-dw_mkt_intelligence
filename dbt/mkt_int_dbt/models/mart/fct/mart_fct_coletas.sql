@@ -13,5 +13,5 @@ select
     c.pp,
     c.mes_coletas
 from {{ ref('int_coletas') }} as c
-left join {{ ref('mart_embalagens') }} as e
+left join {{ ref('mart_dim_embalagens') }} as e
     on c.cod_embalagem = e.cod_embalagem

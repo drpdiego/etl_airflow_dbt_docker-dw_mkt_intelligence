@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: mart_dim_pdvs
+    description: "Tabela de clientes"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa à qual o cliente pertence"
+      - name: cod_cliente
+        description: "Código do cliente"
+      - name: cod_emp_pdv
+        description: "Código da empresa e do ponto de venda concatenados"
+        tests:
+          - unique
+          - not_null
+      - name: canal
+        description: "Canal de vendas do pdv"
+      - name: cidade
+        description: "Cidade onde o ponto de venda está localizado"
+
+  - name: mart_dim_marcas
+    description: "Tabela de marcas"
+    columns:
+      - name: cod_marca 
+        description: "Código da marca"
+      - name: desc_marca 
+        description: "Descrição da marca"
+      - name: seg_preco 
+        description: "Segmento de preço da marca"
+      - name: desc_fabricante 
+        description: "Descrição do fabricante da marca"
+
+  - name: mart_dim_empresas
+    description: "Tabela de empresas"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa"
+      - name: desc_empresa
+        description: "Descrição da empresa"
+      - name: continente
+        description: "Continente onde a empresa está localizada"
+
+  - name: mart_dim_embalagens
+    description: "Tabela de embalagens"
+    columns:
+      - name: cod_embalagem
+        description: "Código da embalagem"
+      - name: desc_embalagem
+        description: "Descrição da embalagem"
+      - name: qtd_unidades
+        description: "Quantidade de unidades na embalagem"
+      - name: vol_litros
+        description: "Volume total em litros de todas as unidades da embalagem"
+
+  - name: mart_dim_date
+    description: "Tabela de datas"
+    columns:
+      - name: date_day
+        description: "Data do dia"
+      - name: day_of_week
+        description: "Dia da semana em número"
+      - name: day_of_week_name
+        description: "Nome do dia da semana"
+      - name: day_of_week_name_short
+        description: "Nome curto do dia da semana"
+      - name: day_of_month
+        description: "Dia do mês"
+      - name: month_of_year
+        description: "Mês do ano"
+      - name: month_name
+        description: "Nome do mês"
+      - name: month_name_short
+        description: "Nome curto do mês"
+      - name: quarter_of_year
+        description: "Trimestre do ano"
+      - name: year_number
+        description: "Apenas o número do ano"

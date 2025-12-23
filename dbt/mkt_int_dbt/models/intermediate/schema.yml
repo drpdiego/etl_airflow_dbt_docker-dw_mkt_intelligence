@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: int_coletas
+    description: "Tabela com a união das tabelas de coletas"
+    columns:
+      - name: cod_empresa
+        description: "Código da empresa"
+      - name: cod_cliente
+        description: "Código do cliente"
+      - name: cod_embalagem
+        description: "Código da embalagem pesquisada"
+      - name: cod_marca
+        description: "Código da marca pesquisada"
+      - name: vol_cxs
+        description: "Quantidade em caixas vendida por mês pelo ponto de venda da embalagem/marca"
+      - name: pv
+        description: "Preço pago pelo PDV na compra da caixa da embalagem/marca"
+      - name: pp
+        description: "Preço pago pelo consumidor final na compra de uma unidade da embalagem/marca"
+      - name: mes_coletas
+        description: "Mês da realização da pesquisa"
+

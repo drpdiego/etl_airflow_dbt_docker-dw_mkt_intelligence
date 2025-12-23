@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: mart_fct_coletas
+    description: "Tabela de coletas consolidada"
+    columns:
+      - name: cod_empresa 
+        description: "Código da empresa à qual o cliente pertence"
+      - name: cod_emp_pdv
+        description: "Código da empresa e do ponto de venda concatenados"
+      - name: cod_embalagem
+        description: "Código da embalagem do produto coletado"
+      - name: cod_marca
+        description: "Código da marca do produto coletado"
+      - name: vol_cxs
+        description: "Volume coletado em caixas"
+      - name: vol_hl
+        description: "Volume coletado em hectolitros"
+      - name: pv
+        description: "Preço de compra do produto pelo ponto de venda em caixas"
+      - name: pp
+        description: "Preço pago pelo cliente por unidade (não pacote) de um produto"
+      - name: mes_coletas
+        description: "Mês de coleta da pesquisa"
