@@ -21,7 +21,7 @@ models:
       - name: desc_empresa
         description: "Descrição da empresa"
       - name: continente
-        description: "CContinente da empresa"
+        description: "Continente da empresa"
 
   - name: stg_embalagens
     description: "Tabela de preparação para embalagens"
@@ -40,10 +40,22 @@ models:
     columns:
       - name: cod_empresa
         description: "Código da empresa à qual o cliente pertence"
+        tests:
+          - not_null:
+              arguments: {}
+              severity: error
       - name: cod_cliente
         description: "Código do cliente"
+        tests:
+          - not_null:
+              arguments: {}
+              severity: error
       - name: canal
         description: "Canal de venda do cliente"
+        tests:
+          - accepted_values:
+              values: ['Bares', 'Bares VIP', 'Mercados', 'Subdistribuidor']
+              severity: warn
       - name: cidade
         description: "Cidade onde o cliente está localizado"
 

@@ -11,8 +11,12 @@ models:
       - name: cod_emp_pdv
         description: "Código da empresa e do ponto de venda concatenados"
         tests:
-          - unique
-          - not_null
+          - unique:
+              arguments: {}
+              severity: error
+          - not_null:
+              arguments: {}
+              severity: error
       - name: canal
         description: "Canal de vendas do pdv"
       - name: cidade

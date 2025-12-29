@@ -38,9 +38,21 @@ with DAG(
         cwd=DBT_PROJECT_DIR
     )
 
+    dbt_test_staging = BashOperator(
+        task_id='run_dbt_staging_tests',
+        bash_command=f'dbt test --select staging --profiles-dir {DBT_PROFILES_DIR} --project-dir {DBT_PROJECT_DIR}',
+        cwd=DBT_PROJECT_DIR
+    )
+
     dbt_run_intermediate = BashOperator(
         task_id='run_dbt_intermediate_layer',
         bash_command=f'dbt run --select intermediate --profiles-dir {DBT_PROFILES_DIR} --project-dir {DBT_PROJECT_DIR}',
+        cwd=DBT_PROJECT_DIR
+    )
+
+    dbt_test_intermediate = BashOperator(
+        task_id='run_dbt_intermediate_tests',
+        bash_command=f'dbt test --select intermediate --profiles-dir {DBT_PROFILES_DIR} --project-dir {DBT_PROJECT_DIR}',
         cwd=DBT_PROJECT_DIR
     )
 
@@ -50,4 +62,10 @@ with DAG(
         cwd=DBT_PROJECT_DIR
     )
 
-    deleting_postgres_tables_task >> importar_task >> dbt_run_staging >> dbt_run_intermediate >> dbt_run_mart
+    dbt_test_mart = BashOperator(
+        task_id='run_dbt_mart_tests',
+        bash_command=f'dbt test --select mart --profiles-dir {DBT_PROFILES_DIR} --project-dir {DBT_PROJECT_DIR}',
+        cwd=DBT_PROJECT_DIR
+    )
+
+    deleting_postgres_tables_task >> importar_task >> dbt_run_staging >> dbt_test_staging >> dbt_run_intermediate >> dbt_test_intermediate >> dbt_run_mart >> dbt_test_mart
