@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from utils.db_connections import get_postgres_url
 
 
+# Function to delete Postgres tables based on files in the spreadsheets directory
 def deleting_postgres_tables(spreadsheets_path_airflow_volume):
 
     string_connection = get_postgres_url()
@@ -13,7 +14,8 @@ def deleting_postgres_tables(spreadsheets_path_airflow_volume):
     engine = create_engine(
         string_connection, pool_pre_ping=True, pool_recycle=300)
 
-    # List to hold table names to be excluded in postgres
+    # List to h
+    # old table names to be excluded in postgres
     # based on files in the spreadsheets directory
     table_names_will_be_excluded = []
 
@@ -45,6 +47,7 @@ def deleting_postgres_tables(spreadsheets_path_airflow_volume):
     conn.close()
 
 
+# Function to import spreadsheets into Postgres using DuckDB
 def import_spreadsheets_duckdb(spreadsheets_path_airflow_volume):
 
     string_connection = get_postgres_url()
@@ -57,26 +60,34 @@ def import_spreadsheets_duckdb(spreadsheets_path_airflow_volume):
 
     # Iterate through files
     for file in os.listdir(spreadsheets_path_airflow_volume):
-        # Inserting .csv just to test it afterward
-        if file.endswith(".xlsx") or file.endswith(".csv"):
-            path = os.path.join(spreadsheets_path_airflow_volume, file)
-            table = os.path.splitext(file)[0]  # Taking off the file extension
-            print(f"Importing {file} to {table}...")
+        # Filter only xlsx and csv files
+        if not (file.endswith(".xlsx") or file.endswith(".csv")):
+            continue
 
-            # Installing and loading the Excel extension
-            con.execute("INSTALL excel;")
-            con.execute("LOAD excel;")
+        path = os.path.join(spreadsheets_path_airflow_volume, file)
+        table = os.path.splitext(file)[0]  # Taking off the file extension
+        print(f"Importing {file} to {table}...")
 
-            # Create temporary table in DuckDB reading the file
+        # Loading the Excel extension
+        con.execute("LOAD excel;")
+
+        if file.endswith(".xlsx"):
+            # Create temporary table in DuckDB reading the file using read_xlsx
             con.execute(f"""
                 CREATE OR REPLACE TABLE temp_table AS
                 SELECT * FROM read_xlsx('{path}')
             """)
+        else:
+            # Create temporary table in DuckDB reading the file using read_csv_auto
+            con.execute(f"""
+                CREATE OR REPLACE TABLE temp_table AS
+                SELECT * FROM read_csv_auto('{path}')
+            """)
 
-            # Sending data to Postgres
-            df = con.execute("SELECT * FROM temp_table").df()
-            df.to_sql(table, engine, if_exists='replace', index=False)
+        # Sending data to Postgres
+        df = con.execute("SELECT * FROM temp_table").df()
+        df.to_sql(table, engine, if_exists='replace', index=False)
 
-            print(f"Tabela '{table}' importada com sucesso!")
+        print(f"Tabela '{table}' importada com sucesso!")
 
     con.close()

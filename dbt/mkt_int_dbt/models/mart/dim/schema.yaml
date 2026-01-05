@@ -12,10 +12,8 @@ models:
         description: "Código da empresa e do ponto de venda concatenados"
         tests:
           - unique:
-              arguments: {}
               severity: error
           - not_null:
-              arguments: {}
               severity: error
       - name: canal
         description: "Canal de vendas do pdv"

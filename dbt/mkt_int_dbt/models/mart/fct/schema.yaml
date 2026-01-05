@@ -6,12 +6,31 @@ models:
     columns:
       - name: cod_empresa 
         description: "Código da empresa à qual o cliente pertence"
+        tests:
+          - relationships:
+              to: ref('mart_dim_empresas')
+              field: cod_empresa
+              severity: error
       - name: cod_emp_pdv
         description: "Código da empresa e do ponto de venda concatenados"
+        tests:
+          - relationships:
+              to: ref('mart_dim_pdvs')
+              field: cod_emp_pdv
+              severity: error
       - name: cod_embalagem
         description: "Código da embalagem do produto coletado"
+        tests:
+          - relationships:
+              to: ref('mart_dim_embalagens')
+              field: cod_embalagem
+              severity: error
       - name: cod_marca
         description: "Código da marca do produto coletado"
+        tests:
+          - relationships:
+              to: ref('mart_dim_marcas')
+              field: cod_marca
       - name: vol_cxs
         description: "Volume coletado em caixas"
       - name: vol_hl

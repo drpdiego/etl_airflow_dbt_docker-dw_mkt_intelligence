@@ -1,13 +1,37 @@
-# Use Airflow official image as foundation
-FROM apache/airflow:2.9.2
+# Use the official Airflow image as base image
+FROM apache/airflow:2.9.2-python3.10
 
-ENV PATH="/home/airflow/.local/bin:${PATH}"
+# Set environment variables to optimeze Python and dbt behavior
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PATH="/home/airflow/.local/bin:${PATH}"
 
-# With a root user, install git to avoid errors when installing dbt-postgres
-# Just to mention, this didn't work. I had to switch to root user to install git manually
+# Switch to root user to install system dependencies
 USER root
-RUN apt-get update && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install necessary lib to process the spreadsheets
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    gcc \
+    build-essential \
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Return to airflow user to install Python packages
 USER airflow
-RUN pip install pandas duckdb openpyxl dbt-postgres psycopg2-binary
+
+# We copy requirements.txt first to leverage Docker layer caching
+# If you change the DAG code but not the requirements, Docker skips this slow step
+COPY --chown=airflow:root requirements.txt .
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Install DuckDB extensions for Excel and Postgres in build time to avoid dependency of internet access in the DAG runtime
+RUN python -c "import duckdb; con = duckdb.connect(':memory:'); con.execute('INSTALL excel; INSTALL postgres;')"
+
+# Set Airflow working directory
+WORKDIR ${AIRFLOW_HOME}

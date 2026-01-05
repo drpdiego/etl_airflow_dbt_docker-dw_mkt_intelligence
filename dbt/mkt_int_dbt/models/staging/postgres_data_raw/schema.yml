@@ -42,13 +42,11 @@ models:
         description: "Código da empresa à qual o cliente pertence"
         tests:
           - not_null:
-              arguments: {}
               severity: error
       - name: cod_cliente
         description: "Código do cliente"
         tests:
           - not_null:
-              arguments: {}
               severity: error
       - name: canal
         description: "Canal de venda do cliente"

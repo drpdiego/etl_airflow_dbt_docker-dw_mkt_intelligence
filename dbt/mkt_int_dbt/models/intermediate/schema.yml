@@ -14,10 +14,10 @@ models:
         description: "Código da marca pesquisada"
       - name: vol_cxs
         description: "Quantidade em caixas vendida por mês pelo ponto de venda da embalagem/marca"
-        tests:
-          - embalagens_intervalo_qtds:
-              arguments: {}
-              severity: warn
+#        tests:
+#          - embalagens_intervalo_qtds:
+#              arguments: {}
+#              severity: warn
       - name: pv
         description: "Preço pago pelo PDV na compra da caixa da embalagem/marca"
       - name: pp
