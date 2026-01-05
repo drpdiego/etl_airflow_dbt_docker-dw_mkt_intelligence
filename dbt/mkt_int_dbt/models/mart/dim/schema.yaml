@@ -73,6 +73,12 @@ models:
         description: "Nome do mês"
       - name: month_name_short
         description: "Nome curto do mês"
+      - name: year_number_short
+        description: "Últimos dois dígitos do ano"
+      - name: month_year_short
+        description: "Mês e ano no formato MMM-AA (Ex: Jan-26)"
+      - name: year_month_number
+        description: "Ano e mês no formato AAAAMM (Ex: 202601 para Janeiro de 2026)"
       - name: quarter_of_year
         description: "Trimestre do ano"
       - name: year_number

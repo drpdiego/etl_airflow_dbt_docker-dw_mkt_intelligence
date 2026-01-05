@@ -41,3 +41,8 @@ models:
         description: "Preço pago pelo cliente por unidade (não pacote) de um produto"
       - name: mes_coletas
         description: "Mês de coleta da pesquisa"
+        tests:
+          - relationships:
+              to: ref('mart_dim_date')
+              field: date_day
+              severity: error
