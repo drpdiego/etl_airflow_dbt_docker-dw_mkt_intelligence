@@ -14,7 +14,7 @@ DBT_PROJECT_DIR = "/opt/airflow/dbt/mkt_int_dbt/"
 # Defining DAG
 with DAG(
     dag_id='handling_spreadsheets_market_data',
-    start_date=datetime(2025, 10, 21),
+    start_date=datetime(2026, 1, 1),
     schedule='@daily',
     catchup=False,
     tags=['import', 'postgres', 'duckdb', 'spreadsheets', 'market_data']

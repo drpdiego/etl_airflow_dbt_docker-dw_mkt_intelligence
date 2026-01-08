@@ -1,6 +1,6 @@
 # Projeto de Orquestração e Modelagem de Dados de Mercado
 
-Projeto de engenharia de dados que utiliza Apache Airflow para orquestrar a ingestão de dados de planilhas locais para um banco de dados PostgreSQL, seguido pela transformação e modelagem dos dados usando dbt (data build tool).
+Projeto de engenharia de dados (ELT) que utiliza Apache Airflow para orquestrar a ingestão de dados de planilhas locais para um banco de dados PostgreSQL, seguido pela transformação e modelagem dos dados usando dbt (data build tool).
 
 ## 🚀 Arquitetura da Solução
 
@@ -121,6 +121,25 @@ O pipeline seguirá a seguinte ordem:
 **Username**: valor da variável 'POSTGRES_USER' (no .env)
 
 **Password**: valor da variável 'POSTGRES_PASSWORD' (no .env)
+
+
+## 🧹 Limpeza e Reset do Ambiente
+
+### 6.1 Finalização do Ambiente (Parcial)
+
+Para parar os serviços e remover os containers:
+
+```bash
+docker-compose down
+```
+
+### 6.2 Limpeza e Reset do Ambiente (Completa)
+
+Caso deseje resetar completamente o projeto, removendo volumes, logs do Airflow e dados do banco Postgres para garantir que a próxima subida de ambiente seja do zero e livre de resíduos, use o comando a seguir:
+
+```bash
+docker-compose down -v
+```
 
 
 Feito por Diego / drpdiego
